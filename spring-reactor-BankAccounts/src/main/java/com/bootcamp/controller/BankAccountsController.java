@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/bankAccounts")
+@RequestMapping("/bank-Accounts")
 @RequiredArgsConstructor
 public class BankAccountsController {
 
@@ -54,13 +54,6 @@ public class BankAccountsController {
 
         Mono<com.bootcamp.model.BankAccounts> monoBody = Mono.just(bankAccounts);
         Mono<com.bootcamp.model.BankAccounts> monoDB = service.findById(id);
-
-        /*service.findById(id).hasElement()
-                .map(status -> {
-                    if(status){
-                        service.update(bankAccounts)
-                    }
-                })*/
 
         return monoDB.zipWith(monoBody, (db, c) -> {
                     db.setAccountId(id);

@@ -8,11 +8,11 @@
         <version>3.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mitocode</groupId>
-    <artifactId>spring-reactor-micro1</artifactId>
+    <groupId>com.bootcamp</groupId>
+    <artifactId>spring-reactor-bank-accounts</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-reactor-micro1</name>
-    <description>spring-reactor-micro1</description>
+    <name>spring-reactor-bank-accounts</name>
+    <description>spring-reactor-bank-accounts</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>

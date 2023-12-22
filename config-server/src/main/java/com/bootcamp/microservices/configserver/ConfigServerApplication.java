@@ -1,4 +1,4 @@
-package com.mitocode.microservices.configserver;
+package com.bootcamp.microservices.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

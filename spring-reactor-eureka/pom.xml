@@ -8,7 +8,7 @@
         <version>3.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.mitocode</groupId>
+    <groupId>com.bootcamp</groupId>
     <artifactId>spring-reactor-eureka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-reactor-eureka</name>
