@@ -23,7 +23,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/bankAccounts")
 @RequiredArgsConstructor
-public class BankAccounts {
+public class BankAccountsController {
 
     private final IBankAccountsService service;
 

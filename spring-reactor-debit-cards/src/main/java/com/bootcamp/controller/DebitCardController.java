@@ -14,7 +14,7 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/debit-card")
+@RequestMapping("/debitCard")
 @RequiredArgsConstructor
 public class DebitCardController {
     private final IDebitCardService service;
