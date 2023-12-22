@@ -1,24 +1,16 @@
 package com.bootcamp.controller;
 
 import com.bootcamp.service.IBankAccountsService;
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
-import org.cloudinary.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/bankAccounts")
@@ -96,66 +88,5 @@ public class BankAccountsController {
                         .thenReturn(new ResponseEntity<Void>(HttpStatus.NO_CONTENT))
                 )
                 .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-
-    ///////////////////////////////////
-    @PostMapping("/v1/upload/{id}")
-    public Mono<ResponseEntity<com.bootcamp.model.BankAccounts>> uploadV1(@PathVariable("id") String id, @RequestPart("file") FilePart file) throws Exception{
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "xxxx",
-                "api_key", "xxx",
-                "api_secret", "xxxxx"
-        ));
-
-        File f = Files.createTempFile("temp", file.filename()).toFile();
-
-        return file.transferTo(f)
-                .then(service.findById(id)
-                        .flatMap(c -> {
-                            Map response;
-
-                            try {
-                                response = cloudinary.uploader().upload(f, ObjectUtils.asMap("resource_type", "auto"));
-                                JSONObject json = new JSONObject(response);
-                                String url = json.getString("url");
-
-                                c.setType(url);
-
-                                return service.update(c).thenReturn(ResponseEntity.ok().body(c));
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        })
-                ).defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping("/v2/upload/{id}")
-    public Mono<ResponseEntity<com.bootcamp.model.BankAccounts>> uploadV2(@PathVariable("id") String id, @RequestPart("file") FilePart file) throws Exception {
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "xxxx",
-                "api_key", "xxxx",
-                "api_secret", "xxxx"
-        ));
-
-        return service.findById(id)
-                .flatMap(c -> {
-
-                    try{
-                        File f = Files.createTempFile("temp", file.filename()).toFile();
-                        file.transferTo(f).block();
-
-                        Map response = cloudinary.uploader().upload(f, ObjectUtils.asMap("resource_type", "auto"));
-                        JSONObject json = new JSONObject(response);
-                        String url = json.getString("url");
-
-                        c.setType(url);
-
-                        return service.update(c).thenReturn(ResponseEntity.ok().body(c));
-                    }catch(Exception e){
-                        throw new RuntimeException(e);
-                    }
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-
     }
 }
