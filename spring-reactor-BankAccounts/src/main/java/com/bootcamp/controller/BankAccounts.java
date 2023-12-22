@@ -21,7 +21,7 @@ import java.nio.file.Files;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bankAccounts")
+@RequestMapping("/bankaccounts")
 @RequiredArgsConstructor
 public class BankAccounts {
 
