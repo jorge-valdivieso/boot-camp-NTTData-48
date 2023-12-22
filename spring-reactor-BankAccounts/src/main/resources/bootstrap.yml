@@ -3,6 +3,6 @@ spring:
     name: bankAccounts-service
   cloud:
     config:
-      uri: http://localhost:9000
+      uri: http://localhost:9004
       profile: dev
       enabled: true
