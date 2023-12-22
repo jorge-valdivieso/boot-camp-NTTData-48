@@ -14,7 +14,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/jorge-valdivieso/boot-camp-NTTData48.git
+          uri: https://github.com/jorge-valdivieso/boot-camp-NTTData-48.git
           default-label: develop
           clone-on-start: true
           force-pull: false
