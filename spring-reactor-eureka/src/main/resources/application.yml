@@ -1,0 +1,11 @@
+application:
+  title: @project.name@
+  version: @project.version@
+  author: Bootcamp
+
+  #server:
+  # port: 8761
+
+#spring:
+#  application:
+#    name: discovery-server

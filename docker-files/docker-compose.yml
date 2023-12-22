@@ -1,0 +1,36 @@
+# docker network create --driver=bridge --subnet=192.168.11.0/24 --ip-range=192.168.11.0/24 --gateway=192.168.11.1 peruvianbank-network
+
+version: "3.9"
+
+services:
+
+  mongo-service:
+    image: mongo
+    #restart: always
+    container_name:  peruvianbank-mongo-service
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: peruvianbank
+      MONGO_INITDB_ROOT_PASSWORD: peruvianbank
+    networks:
+      - peruvianbank
+
+  mongo-express:
+    image: mongo-express
+    #restart: always
+    container_name: peruvianbank-mongo-express-service
+    depends_on:
+      - "mongo-service"
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: peruvianbank
+      ME_CONFIG_MONGODB_ADMINPASSWORD: peruvianbank
+      ME_CONFIG_MONGODB_URL: mongodb://peruvianbank:peruvianbank@mongo-service:27017
+    networks:
+      - peruvianbank
+      
+networks:
+  peruvianbank:
+    name: peruvianbank-network

@@ -1,0 +1,23 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9001}
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jorge-valdivieso/boot-camp-NTTData48.git
+          default-label: develop
+          clone-on-start: true
+          force-pull: false
+          refresh-rate: 15
+#           username:
+#          password:

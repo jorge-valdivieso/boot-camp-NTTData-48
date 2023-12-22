@@ -1,0 +1,48 @@
+server:
+  port: 8099
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+#okta:
+#  oauth2:
+#    issuer: https://TU_OKTA_DOMAIN/oauth2/default
+#    client-id: TU_CLIENT_ID
+#    client-secret: TU_CLIENT_SECRET
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: m1-service
+          #uri: lb://micro1
+          uri: http://localhost:8080
+          predicates:
+            - Path=/m1/**
+          filters:
+            - RewritePath=/m1/(?<x>.*), /$\{x}
+            #- TokenRelay=
+        - id: m2-service
+          #uri: lb://micro2
+          uri: http://localhost:8081
+          predicates:
+            - Path=/m2/**
+          filters:
+            - RewritePath=/m2/(?<x>.*), /$\{x}
+            #- TokenRelay=
+        - id: m3-service
+          #uri: lb://micro3
+          uri: http://localhost:8082
+          predicates:
+            - Path=/m3/**
+          filters:
+            - RewritePath=/m3/(?<x>.*), /$\{x}
+            #- TokenRelay=

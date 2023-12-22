@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: micro4
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/peruvianbank
+server:
+  port: 8083
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+#okta:
+#  oauth2:
+#    issuer: https://TU_OKTA_DOMAIN/oauth2/default
+#    client-id: TU_CLIENT_ID
+#    client-secret: TU_CLIENT_SECRET

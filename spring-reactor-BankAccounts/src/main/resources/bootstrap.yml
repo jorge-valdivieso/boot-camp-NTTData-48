@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: bankAccounts-service
+  cloud:
+    config:
+      uri: http://localhost:9000
+      profile: dev
+      enabled: true
