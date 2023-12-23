@@ -1,0 +1,21 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9010}
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka}
+
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: peruvianbank
+      # username: '{cipher}15dfd68adfe32e63d2ef16b7e1b0b090c7c1a39c824656c1010db7870dd49b04'
+      # password: '{cipher}225d9814e6187bd8ab890c72d08bd557185cb3e783a23efec8bff01c030b3172'
+      uri: mongodb://peruvianbank:peruvianbank@localhost:27017
+      authentication-database: admin
