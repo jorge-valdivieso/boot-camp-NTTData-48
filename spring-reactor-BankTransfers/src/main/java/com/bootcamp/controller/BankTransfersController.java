@@ -23,7 +23,7 @@ import java.nio.file.Files;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/bankTransfers")
+@RequestMapping("/mobile-Wallet-Users")
 @RequiredArgsConstructor
 public class BankTransfersController {
 
